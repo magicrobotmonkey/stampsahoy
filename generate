@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+import argparse
+import subprocess
+
+def command(output, args):
+    message = ' '.join(args.message)
+    cmd = [
+        "openscad",
+        "-o", output,
+        "-D", f'message="{message}"',
+        "-D", f'font="{args.font}"',
+        "-D", f'font_size={args.size}',
+        "-D", f'depth={args.depth}',
+        "stamp.scad",
+    ]
+    print(' '.join(cmd))
+    subprocess.run(cmd)
+
+
+parser = argparse.ArgumentParser(description='Generate a text stamp.')
+parser.add_argument('-d', '--depth', default=5, help='Stamp Depth')
+parser.add_argument('-s', '--size', default=10, help='Font Size')
+parser.add_argument('-f', '--font', default="JMH Typewriter dry", help='Font/Style')
+parser.add_argument('message', nargs='+')
+args = parser.parse_args()
+
+command('stamp.stl', args)
