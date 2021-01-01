@@ -8,7 +8,7 @@ stamp_width = font_size * message_length * 0.9;
 stamp_height = font_size * 1.5;
 
 module base() {
-    linear_extrude(.4) {
+    linear_extrude(.5) {
         square([stamp_width, stamp_height], center = true);
     }
 }

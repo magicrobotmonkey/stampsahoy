@@ -2,7 +2,7 @@
 import argparse
 import subprocess
 
-def command(output, args):
+def model(output, args):
     message = ' '.join(args.message)
     cmd = [
         "openscad",
@@ -17,6 +17,20 @@ def command(output, args):
     subprocess.run(cmd)
 
 
+def slice():
+    cmd = [
+        "Slic3r",
+        "--skirts=0",
+        "--temperature=215",
+        "--bed-temperature=60",
+        "--layer-height=0.15",
+        "--nozzle-diameter=0.4",
+        "--cooling",
+        "stamp.stl",
+    ]
+    print(' '.join(cmd))
+    subprocess.run(cmd)
+
 parser = argparse.ArgumentParser(description='Generate a text stamp.')
 parser.add_argument('-d', '--depth', default=5, help='Stamp Depth')
 parser.add_argument('-s', '--size', default=10, help='Font Size')
@@ -24,4 +38,5 @@ parser.add_argument('-f', '--font', default="JMH Typewriter dry", help='Font/Sty
 parser.add_argument('message', nargs='+')
 args = parser.parse_args()
 
-command('stamp.stl', args)
+model('stamp.stl', args)
+slice()
