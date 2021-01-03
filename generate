@@ -23,6 +23,7 @@ def slice():
         "--skirts=0",
         "--temperature=215",
         "--bed-temperature=60",
+        "--first-layer-bed-temperature=60",
         "--layer-height=0.15",
         "--nozzle-diameter=0.4",
         "--cooling",
