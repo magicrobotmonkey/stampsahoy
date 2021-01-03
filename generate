@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import subprocess
+from octorest import OctoRest
 
 def model(output, args):
     message = ' '.join(args.message)
@@ -37,12 +38,28 @@ def slice():
     print(' '.join(cmd))
     subprocess.run(cmd)
 
+def octoprint(url, apikey):
+    client = OctoRest(url=url, apikey=apikey)
+    state = client.state()
+    if state != 'Operational':
+        print("Printer ain't operational, bailing out")
+        return
+    print("printing stamp")
+    client.upload('stamp.gcode')
+    client.select('stamp.gcode')
+    client.start()
+
 parser = argparse.ArgumentParser(description='Generate a text stamp.')
 parser.add_argument('-d', '--depth', default=5, help='Stamp Depth')
 parser.add_argument('-s', '--size', default=10, help='Font Size')
 parser.add_argument('-f', '--font', default="JMH Typewriter dry", help='Font/Style')
+parser.add_argument('-u', '--octoprint_url', help='Url of Octoprint Server')
+parser.add_argument('-k', '--octoprint_key', help='Octoprint api key')
 parser.add_argument('message', nargs='+')
 args = parser.parse_args()
 
 model('stamp.stl', args)
 slice()
+if args.octoprint_url is not None and \
+    args.octoprint_key is not None:
+    octoprint(args.octoprint_url, args.octoprint_key)
