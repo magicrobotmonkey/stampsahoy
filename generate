@@ -25,10 +25,11 @@ def slice():
         "--temperature=215",
         "--bed-temperature=60",
         "--first-layer-bed-temperature=60",
-        "--layer-height=0.15",
+        "--layer-height=0.2",
         "--nozzle-diameter=0.4",
         "--filament-diameter=1.75",
         "--cooling",
+        "--top-solid-infill-speed=80",
         "--solid-infill-speed=80",
         "--gap-fill-speed=80",
         "--small-perimeter-speed=40",
@@ -50,7 +51,7 @@ def octoprint(url, apikey):
     client.start()
 
 parser = argparse.ArgumentParser(description='Generate a text stamp.')
-parser.add_argument('-d', '--depth', default=5, help='Stamp Depth')
+parser.add_argument('-d', '--depth', default=3, help='Stamp Depth')
 parser.add_argument('-s', '--size', default=10, help='Font Size')
 parser.add_argument('-f', '--font', default="JMH Typewriter dry", help='Font/Style')
 parser.add_argument('-u', '--octoprint_url', help='Url of Octoprint Server')

@@ -1,6 +1,6 @@
 message = "Jim's Kraut Crock";
 font = "JMH Typewriter dry";
-font_size = 10;
+font_size = 12;
 depth = 2.5;
 
 message_length = len(message);
