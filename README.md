@@ -3,6 +3,8 @@ fancy little pipeline for quickly and consistently generating stamps for clay
 Give it text and it models (openscad), slices (Slic3r) and prints (octopi)!
 We print these with tpu and then press them in mugs and shit:
 https://nightshiftstoneware.com/collections/drinkware/products/custom-drinkware
+
+
 Just two backing layers in TPU makes the perfect amount of floppiness for random shapes
 
 
@@ -12,6 +14,7 @@ Make a python3 venv and `pip install -r requirements.txt`
 
 
 #### Usage
+`./generate "print me"`
 ```
 usage: generate [-h] [-d DEPTH] [-s SIZE] [-f FONT] [-u OCTOPRINT_URL]
                 [-k OCTOPRINT_KEY]
